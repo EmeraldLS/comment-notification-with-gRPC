@@ -1,0 +1,30 @@
+syntax="proto3";
+
+package proto;
+
+option go_package="./proto";
+
+service Notification{
+    rpc Notify(stream Comment) returns (stream Response) {};
+}
+
+message User{
+    string id = 1;
+    string name = 2;
+    int64 followers = 3;
+    int64 following = 4;
+}
+
+
+message Comment{
+    User user = 1;  //user whom is commenting
+    string content = 2; //Comment content
+    string timestamp = 3; //Time of comment
+}
+
+
+
+message Response{
+    string content = 1;
+    int32 total_comment = 2; //No of comments
+}
